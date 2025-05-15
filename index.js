@@ -1,9 +1,18 @@
+const cors =  require('cors')
 const express = require('express')
 const app = express()
+
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
 
 const {initialiseDatabase} = require('./db/db.connect')
 const Book = require('./models/book.models')
 
+app.use(cors(corsOptions));
 app.use(express.json())
 initialiseDatabase()
 
@@ -76,7 +85,7 @@ app.get("/books/:bookTitle", async (req, res) => {
     }
 })
 
-// get all books by authot
+// get all books by author
 
 async function readBooksByAuthor(authorName){
     try {
