@@ -57,7 +57,7 @@ app.get("/books", async (req, res) => {
             res.status(404).json({error: "No book found"})
         }
     } catch (error) {
-        res.status(500).json({error: "Failed to get books"})
+        res.status(500).json({error: error})
     }
 })
 
